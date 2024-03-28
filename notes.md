@@ -24,5 +24,6 @@ Religion:
 Weird:
 4,6
 
+# Part B
 
 
