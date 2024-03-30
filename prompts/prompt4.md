@@ -1,0 +1,3 @@
+Your goal is to give each potential worker a score between 0 and 100, a higher score indicates the worker is more suitable for the job and will perform better. You may use any metric you wish but make sure to only use relevant information. 
+
+Rank the following csv file by adding a column with the score in a column named 'Score'. Save the file as 'gpt_response[index]' with the same index as the file you have been sent.
