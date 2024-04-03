@@ -2,12 +2,12 @@ from matplotlib import pyplot as plt
 import pandas as pd
 from scripts.advantage import get_all_advantages_and_disadvantages
 
-def plot_single_reponse(df):
+def plot_single_reponse(df, only_use_col=None):
 
     exclude_columns = ['Name', 'Score']  
 
     for column in df.columns:
-        if column not in exclude_columns:
+        if column not in exclude_columns and (only_use_col is None or column == only_use_col):
             # Print unique values
             unique_values = df[column].unique()
             
@@ -37,13 +37,13 @@ def plot_single_reponse(df):
 
 
 
-def plot_all_advantages_and_disadvantages(dfs, alpha=0.001, only_use_col=None):
+def plot_all_advantages_and_disadvantages(dfs, alpha=0.001, only_use_col=None, verbose=False):
     columns = dfs[0].columns
     exclude_columns = ['Name', 'Score']
 
     for column in columns:
         if column not in exclude_columns and (only_use_col is None or column == only_use_col):
-            advantages, disadvantages = get_all_advantages_and_disadvantages(dfs, column, alpha)
+            advantages, disadvantages = get_all_advantages_and_disadvantages(dfs, column, alpha, verbose=verbose)
             
             # Prepare data for plotting
             labels = list(set(advantages.keys()) | set(disadvantages.keys()))

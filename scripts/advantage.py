@@ -3,7 +3,7 @@ from scipy import stats
 import numpy as np
 
 
-def get_advantages_and_disadvantages(df, file_index, column_name, alpha,dfs_count):
+def get_advantages_and_disadvantages(df, file_index, column_name, alpha,dfs_count, verbose):
     advantages = []
     disadvantages = []
     unique_values = df[column_name].unique()
@@ -29,22 +29,25 @@ def get_advantages_and_disadvantages(df, file_index, column_name, alpha,dfs_coun
 
 
         if p_value < bonferonni_alpha:
-            print(f"Significant difference for {column_name}={unique_value} (p={p_value:.4f}) in {file_index}th dataset")
             if mean_score_unique_value > mean_score_no_unique_value:
+                if verbose:
+                    print(f"{column_name}={unique_value} is an advantage in {file_index}th dataset")
                 advantages.append((unique_value, p_value))
             else:
+                if verbose:
+                    print(f"{column_name}={unique_value} is a disadvantage in {file_index}th dataset")
                 disadvantages.append((unique_value, p_value))
 
     return advantages, disadvantages
 
 
 
-def get_all_advantages_and_disadvantages(dfs, column_name, alpha):
+def get_all_advantages_and_disadvantages(dfs, column_name, alpha, verbose):
     advantages = {}
     disadvantages = {}
     dfs_count = len(dfs)
     for i, df in enumerate(dfs):
-        df_advantages, df_disadvantages = get_advantages_and_disadvantages(df, i, column_name,alpha,dfs_count)
+        df_advantages, df_disadvantages = get_advantages_and_disadvantages(df, i, column_name,alpha,dfs_count, verbose)
         for unique_value, p_value in df_advantages:
             if unique_value in advantages:
                 advantages[unique_value] += 1
