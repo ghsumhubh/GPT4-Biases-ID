@@ -47,28 +47,29 @@ def get_all_csv_files_in_folder(folder):
 
 def get_all_csv_files_for_experiment(experiment):
     if experiment == 'part a':
-        return get_all_csv_files_in_folder('responses/part a')
+        files = get_all_csv_files_in_folder('responses/part a')
     
     elif experiment == 'part b':
         files = get_all_csv_files_in_folder('responses/part a')
         files.extend(get_all_csv_files_in_folder('responses/part b'))
-        return files
     
-    elif experiment == 'part abc only gender':
+    elif experiment == 'prompt 1 only gender':
         files = get_all_csv_files_in_folder('responses/part a')
         files.extend(get_all_csv_files_in_folder('responses/part b'))
-        files.extend(get_all_csv_files_in_folder('responses/color'))
-        files.extend(get_all_csv_files_in_folder('responses/utensil'))
-        files.extend(get_all_csv_files_in_folder('responses/gibberish'))
+        files.extend(get_all_csv_files_in_folder('responses/part c/color'))
+        files.extend(get_all_csv_files_in_folder('responses/part c/utensil'))
+        files.extend(get_all_csv_files_in_folder('responses/part c/gibberish'))
 
 
 
     elif experiment == 'color':
-        return get_all_csv_files_in_folder('responses/color')
+        files = get_all_csv_files_in_folder('responses/part c/color')
     
     elif experiment == 'utensil':
-        return get_all_csv_files_in_folder('responses/utensil')
+        files = get_all_csv_files_in_folder('responses/part c/utensil')
     
     elif experiment == 'gibberish':
-        return get_all_csv_files_in_folder('responses/gibberish')
+        files = get_all_csv_files_in_folder('responses/part c/gibberish')
+
+    return files
     
