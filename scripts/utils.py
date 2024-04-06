@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 
 def extract_first_number(s):
     # Initialize an empty string to hold the number
@@ -30,15 +31,20 @@ def get_all_csv_files_in_folder(folder):
         # If the file is a CSV file, add its name to the list
         if file.endswith('.csv'):
             csv_files.append(file)
+
+    bad_combos = [('responses/first_prompt/part a', 'gpt_response2.csv'),
+                  ('responses/third_prompt/part b', 'gpt_response_people_44.csv')]
     
-    if folder in ['responses/first_prompt/part a']: # bad output files
-        csv_files = [file for file in csv_files if file != 'gpt_response2.csv']
+    for (fold1, file1) in bad_combos:
+        if folder == fold1 and file1 in csv_files:
+            csv_files.remove(file1)
 
     # order the list of files by extracting the first number in the file name
     csv_files.sort(key=extract_first_number)
 
     # concact the folder path to the file name
     csv_files = [os.path.join(folder, file) for file in csv_files]
+
 
     
     return csv_files
@@ -74,4 +80,16 @@ def get_all_csv_files_for_experiment(experiment, prompt='first'):
         files = get_all_csv_files_in_folder(f'{base_path}/part c/gibberish')
 
     return files
+
+
+def get_irregular_files(file_names, columns = ['Name']):
+    dfs = [pd.read_csv(file) for file in file_names]
+    irregular_files = []
+
+    for i, df in enumerate(dfs):
+        # check if DF has the required columns
+        if not all(col in df.columns for col in columns):
+            irregular_files.append(file_names[i])
+
+    print(irregular_files if irregular_files else 'No irregular files found')
     
