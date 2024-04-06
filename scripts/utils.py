@@ -45,31 +45,33 @@ def get_all_csv_files_in_folder(folder):
 
 
 
-def get_all_csv_files_for_experiment(experiment):
+def get_all_csv_files_for_experiment(experiment, prompt='first'):
+    prompt_name = f'{prompt}_prompt'
+    base_path = f'responses/{prompt_name}'
     if experiment == 'part a':
-        files = get_all_csv_files_in_folder('responses/part a')
+        files = get_all_csv_files_in_folder(f'{base_path}/part a')
     
     elif experiment == 'part b':
-        files = get_all_csv_files_in_folder('responses/part a')
-        files.extend(get_all_csv_files_in_folder('responses/part b'))
+        files = get_all_csv_files_in_folder(f'{base_path}/part a')
+        files.extend(get_all_csv_files_in_folder(f'{base_path}/part b'))
     
     elif experiment == 'prompt 1 only gender':
-        files = get_all_csv_files_in_folder('responses/part a')
-        files.extend(get_all_csv_files_in_folder('responses/part b'))
-        files.extend(get_all_csv_files_in_folder('responses/part c/color'))
-        files.extend(get_all_csv_files_in_folder('responses/part c/utensil'))
-        files.extend(get_all_csv_files_in_folder('responses/part c/gibberish'))
+        files = get_all_csv_files_in_folder(f'{base_path}/part a')
+        files.extend(get_all_csv_files_in_folder(f'{base_path}/part b'))
+        files.extend(get_all_csv_files_in_folder(f'{base_path}/part c/color'))
+        files.extend(get_all_csv_files_in_folder(f'{base_path}/part c/utensil'))
+        files.extend(get_all_csv_files_in_folder(f'{base_path}/part c/gibberish'))
 
 
 
     elif experiment == 'color':
-        files = get_all_csv_files_in_folder('responses/part c/color')
+        files = get_all_csv_files_in_folder(f'{base_path}/part c/color')
     
     elif experiment == 'utensil':
-        files = get_all_csv_files_in_folder('responses/part c/utensil')
+        files = get_all_csv_files_in_folder(f'{base_path}/part c/utensil')
     
     elif experiment == 'gibberish':
-        files = get_all_csv_files_in_folder('responses/part c/gibberish')
+        files = get_all_csv_files_in_folder(f'{base_path}/part c/gibberish')
 
     return files
     
