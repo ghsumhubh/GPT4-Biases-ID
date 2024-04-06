@@ -31,7 +31,7 @@ def get_all_csv_files_in_folder(folder):
         if file.endswith('.csv'):
             csv_files.append(file)
     
-    if folder in ['responses/part a']:
+    if folder in ['responses/first_prompt/part a']: # bad output files
         csv_files = [file for file in csv_files if file != 'gpt_response2.csv']
 
     # order the list of files by extracting the first number in the file name

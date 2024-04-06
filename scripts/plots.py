@@ -58,6 +58,11 @@ def plot_all_advantages_and_disadvantages(dfs, alpha=0.001, only_use_col=None, v
             # Combine and sort
             combined = [(label, advantages.get(label, 0), -disadvantages.get(label, 0)) for label in set(advantages) | set(disadvantages)]
             sorted_combined = sorted(combined, key=lambda x: (x[1], x[2]), reverse=True)
+
+            # if no advantages or disadvantages, skip plotting
+            if len(sorted_combined) == 0:
+                print(f"No advantages or disadvantages found for {column}")
+                continue
             
             # Unpack the sorted labels, advantages, and disadvantages (now positive for plotting)
             labels, adv_values, disadv_values = zip(*[(label, adv, -disadv) for label, adv, disadv in sorted_combined])
