@@ -61,7 +61,7 @@ def get_all_csv_files_for_experiment(experiment, prompt='first'):
         files = get_all_csv_files_in_folder(f'{base_path}/part a')
         files.extend(get_all_csv_files_in_folder(f'{base_path}/part b'))
     
-    elif experiment == 'prompt 1 only gender':
+    elif experiment == 'only gender':
         files = get_all_csv_files_in_folder(f'{base_path}/part a')
         files.extend(get_all_csv_files_in_folder(f'{base_path}/part b'))
         files.extend(get_all_csv_files_in_folder(f'{base_path}/part c/color'))
