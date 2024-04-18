@@ -10,7 +10,7 @@ __pycache__/
 *.csv
 
 # folders for pics
-/pictures/
+*.png
 
 # Distribution / packaging
 .Python
