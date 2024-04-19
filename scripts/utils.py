@@ -78,7 +78,9 @@ def get_all_csv_files_for_experiment(experiment, prompt='first'):
     
     elif experiment == 'gibberish':
         files = get_all_csv_files_in_folder(f'{base_path}/part c/gibberish')
-
+    elif experiment == 'gibberish extended':
+        files = get_all_csv_files_in_folder(f'{base_path}/part c/gibberish')
+        files.extend(get_all_csv_files_in_folder(f'{base_path}/part c/gibberish_extended'))
     return files
 
 
